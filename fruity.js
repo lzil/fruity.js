@@ -12,5 +12,15 @@ $(document).ready(function() {
 		images[i].src = fruitImages[Math.floor(Math.random()*fruitImages.length)];
 	}
 
-	console.log(document.body.textContent);
+	console.log(document.body.textContent.split("\\s+"));
+	document.body.innerHTML = document.body.innerHTML.replace(/ the /ig, ' apple ');
+	document.body.innerHTML = document.body.innerHTML.replace(/ a /ig, ' orange ');
+	document.body.innerHTML = document.body.innerHTML.replace(/ I /ig, ' kiwi ');
+	document.body.innerHTML = document.body.innerHTML.replace(/ and /ig, ' mango ');
+
+	var links = document.getElementsByTagName('a');
+	for (var i = 0; i < links.length; i++) {
+		links[i].href = 'https://en.wikipedia.org/wiki/Fruit'
+	};
+
 })
