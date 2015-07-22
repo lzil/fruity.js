@@ -23,7 +23,15 @@ $(document).ready(function() {
 	children = Array.prototype.slice.call(children);
 	while (ind < children.length) {
 		if (children[ind].nodeType == 3) {
-			children[ind].textContent = children[ind].textContent.replace(/ the | a | I | and /ig, ' ' + fruitWords[Math.floor(Math.random()*fruitWords.length)] + ' ')
+			contentList = children[ind].textContent.split(' ');
+			for (var i = 0; i < contentList.length; i++) {
+				console.log(contentList[i])
+				if (contentList[i].match(/the|^a$|^and$|at|^is$|I|to|^on$/) != null) {
+					contentList[i] = fruitWords[Math.floor(Math.random()*fruitWords.length)]
+				}
+				children[ind].textContent = contentList.join(' ');
+			}
+			//children[ind].textContent = children[ind].textContent.replace(/ the | a | I | and /ig, ' ' + fruitWords[Math.floor(Math.random()*fruitWords.length)] + ' ')
 		} else {
 			var nextChildren = children[ind].childNodes;
 			nextChildren = Array.prototype.slice.call(nextChildren);
