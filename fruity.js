@@ -14,6 +14,8 @@ $(document).ready(function() {
 	for (var i = 0; i < images.length; i++) {
 		var h = images[i].style.height;
 		var w = images[i].style.width;
+		console.log(h)
+		console.log(w)
 		images[i].style.maxHeight = h;
 		images[i].style.maxWidth = w;
 		images[i].src = fruitImages[Math.floor(Math.random()*fruitImages.length)];
@@ -24,14 +26,21 @@ $(document).ready(function() {
 	var ind = 0;
 	children = Array.prototype.slice.call(children);
 	while (ind < children.length) {
+
 		if (children[ind].nodeType == 3) {
 			contentList = children[ind].textContent.split(' ');
 			for (var i = 0; i < contentList.length; i++) {
-				if (contentList[i].match(/the|^a$|^and$|at|^is$|I|to|^on$/) != null) {
-					contentList[i] = fruitWords[Math.floor(Math.random()*fruitWords.length)]
+				contentList2 =  contentList[i].split('\n');
+				for (var j = 0; j < contentList2.length; j++) {
+					if (contentList2[j].match(/^[-a-zA-Z0-9\.,;:'!]+$/) && Math.floor((Math.random() * 5) + 1) < 4) {
+						contentList2[j] = fruitWords[Math.floor(Math.random()*fruitWords.length)]
+					}
 				}
-				children[ind].textContent = contentList.join(' ');
+				contentList[i] = contentList2.join('\n')
+				console.log(contentList)
+				
 			}
+			children[ind].textContent = contentList.join(' ');
 			//children[ind].textContent = children[ind].textContent.replace(/ the | a | I | and /ig, ' ' + fruitWords[Math.floor(Math.random()*fruitWords.length)] + ' ')
 		} else {
 			var nextChildren = children[ind].childNodes;
@@ -44,11 +53,12 @@ $(document).ready(function() {
 		}
 		ind++;
 	}
-	var allElements = document.body.getElementsByTagName("*");
-	console.log(allElements)
+	var allElements = document.getElementsByTagName("div");
+	//console.log(allElements)
 	for (var i = 0; i < allElements.length; i++) {
-		if (allElements[i].style.color != '#ffffff') {
-			console.log(allElements[i].style.backgroundColor)
+		if (allElements[i].style.color != 'ads') {
+			//console.log(allElements[i])
+			//console.log(allElements[i].style.backgroundColor)
 			allElements[i].style.color = fruitColors[Math.floor(Math.random()*fruitColors.length)];
 		}
 	}
