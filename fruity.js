@@ -1,24 +1,10 @@
 $(document).ready(function() {
-	var fruitImages = ['https://upload.wikimedia.org/wikipedia/commons/d/dc/Orange-fruit.png',
-	'https://cdn0.iconfinder.com/data/icons/fruits/512/Banana.png',
-	'http://pngimg.com/upload/kiwi_PNG4035.png',
-	'http://galerey-room.ru/images/201223_1383930743.png',
-	'http://2.bp.blogspot.com/-7zl-8m8ksDY/UgCooHEW8dI/AAAAAAAAANs/2FxX3n5ai08/s1600/Strawberry.png',
-	'http://www.dhasmartbar.com/img_slider/slider4/blueberries_stack.png',
-	'http://bellvalefarms.net/images/slider/peach.png'
-	];
 	var fruitColors = ['#FFCC66', '#66FF33', '#FFFF66', '#FF9999'];
-	var fruitWords = ['apple', 'orange', 'kiwi', 'mango', 'grape', 'pineapple', 'watermelon', 'papaya', 'peach', 'cantaloupe', 'banana', 'cherries'];
+	var fruitWords = ['apple', 'orange', 'kiwi', 'mango', 'grape', 'pineapple', 'watermelon', 'papaya', 'peach', 'cantaloupe', 'banana', 'cherries', 'plum', 'figs', 'pear', 'grapefruit', 'limes', 'lemon', 'lychee', 'blueberries', 'apricot', 'raspberry', 'persimmon', 'strawberry', 'kumquat', 'blackberry', 'tangerine', 'passionfruit', 'avocado'];
 
 	var images = document.getElementsByTagName('img');
 	for (var i = 0; i < images.length; i++) {
-		var h = images[i].style.height;
-		var w = images[i].style.width;
-		console.log(h)
-		console.log(w)
-		images[i].style.maxHeight = h;
-		images[i].style.maxWidth = w;
-		images[i].src = fruitImages[Math.floor(Math.random()*fruitImages.length)];
+		images[i].style.webkitFilter = "grayscale(.4) sepia(.2) saturate(3) brightness(1.5) contrast(1.2)";
 	};
 
 	
@@ -32,16 +18,27 @@ $(document).ready(function() {
 			for (var i = 0; i < contentList.length; i++) {
 				contentList2 =  contentList[i].split('\n');
 				for (var j = 0; j < contentList2.length; j++) {
-					if (contentList2[j].match(/^[-a-zA-Z0-9\.,;:'!]+$/) && Math.floor((Math.random() * 5) + 1) < 4) {
+					if (contentList2[j].match(/^[-a-zA-Z0-9\.,;:'?!]+$/) && Math.floor((Math.random() * 5) + 1) < 3) {
+						firstP = 0;
+						lastP = 0;
+						if (contentList2[j].charAt(0).toUpperCase() === contentList2[j].charAt(0) && contentList2[j].length > 1) {
+							firstP = 1;
+						}
+						if (contentList2[j].slice(-1).match(/^[\.,;:'?!]$/) && contentList2[j].length > 1) {
+							lastP = contentList2[j].slice(-1);
+						}
 						contentList2[j] = fruitWords[Math.floor(Math.random()*fruitWords.length)]
+						if (firstP != 0) {
+							contentList2[j] = contentList2[j].charAt(0).toUpperCase() + contentList2[j].slice(1);
+						}
+						if (lastP != 0) {
+							contentList2[j] += lastP;
+						}
 					}
 				}
-				contentList[i] = contentList2.join('\n')
-				console.log(contentList)
-				
+				contentList[i] = contentList2.join('\n')				
 			}
 			children[ind].textContent = contentList.join(' ');
-			//children[ind].textContent = children[ind].textContent.replace(/ the | a | I | and /ig, ' ' + fruitWords[Math.floor(Math.random()*fruitWords.length)] + ' ')
 		} else {
 			var nextChildren = children[ind].childNodes;
 			nextChildren = Array.prototype.slice.call(nextChildren);
@@ -62,12 +59,6 @@ $(document).ready(function() {
 			allElements[i].style.color = fruitColors[Math.floor(Math.random()*fruitColors.length)];
 		}
 	}
-	
-	// document.body.innerHTML = document.body.innerHTML.replace(/ the /ig, ' apple ');
-	// document.body.innerHTML = document.body.innerHTML.replace(/ a /ig, ' orange ');
-	// document.body.innerHTML = document.body.innerHTML.replace(/ I /ig, ' kiwi ');
-	// document.body.innerHTML = document.body.innerHTML.replace(/ and /ig, ' mango ');
-
 	var links = document.getElementsByTagName('a');
 	for (var i = 0; i < links.length; i++) {
 		links[i].href = 'https://en.wikipedia.org/wiki/Fruit';
