@@ -7,6 +7,9 @@ $(document).ready(function() {
 	'http://www.dhasmartbar.com/img_slider/slider4/blueberries_stack.png',
 	'http://bellvalefarms.net/images/slider/peach.png'
 	];
+	var fruitColors = ['#FFCC66', '#66FF33', '#FFFF66', '#FF9999'];
+	var fruitWords = ['apple', 'orange', 'kiwi', 'mango', 'grape', 'pineapple', 'watermelon', 'papaya', 'peach', 'cantaloupe', 'banana', 'cherries'];
+
 	var images = document.getElementsByTagName('img');
 	for (var i = 0; i < images.length; i++) {
 		var h = images[i].style.height;
@@ -16,7 +19,6 @@ $(document).ready(function() {
 		images[i].src = fruitImages[Math.floor(Math.random()*fruitImages.length)];
 	};
 
-	fruitWords = ['apple', 'orange', 'kiwi', 'mango', 'grape', 'pineapple', 'watermelon', 'papaya', 'peach', 'cantaloupe', 'banana', 'cherries'];
 	
 	var children = document.body.childNodes;
 	var ind = 0;
@@ -25,7 +27,6 @@ $(document).ready(function() {
 		if (children[ind].nodeType == 3) {
 			contentList = children[ind].textContent.split(' ');
 			for (var i = 0; i < contentList.length; i++) {
-				console.log(contentList[i])
 				if (contentList[i].match(/the|^a$|^and$|at|^is$|I|to|^on$/) != null) {
 					contentList[i] = fruitWords[Math.floor(Math.random()*fruitWords.length)]
 				}
@@ -43,6 +44,14 @@ $(document).ready(function() {
 		}
 		ind++;
 	}
+	var allElements = document.body.getElementsByTagName("*");
+	console.log(allElements)
+	for (var i = 0; i < allElements.length; i++) {
+		if (allElements[i].style.color != '#ffffff') {
+			console.log(allElements[i].style.backgroundColor)
+			allElements[i].style.color = fruitColors[Math.floor(Math.random()*fruitColors.length)];
+		}
+	}
 	
 	// document.body.innerHTML = document.body.innerHTML.replace(/ the /ig, ' apple ');
 	// document.body.innerHTML = document.body.innerHTML.replace(/ a /ig, ' orange ');
@@ -53,5 +62,7 @@ $(document).ready(function() {
 	for (var i = 0; i < links.length; i++) {
 		links[i].href = 'https://en.wikipedia.org/wiki/Fruit';
 	};
+
+
 
 })
