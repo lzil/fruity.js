@@ -65,7 +65,11 @@ var fruity = function(col) {
 						if (contentList2[j].slice(-1).match(/^[\.,;:'?!]$/) && contentList2[j].length > 1) {
 							lastP = contentList2[j].slice(-1);
 						}
-						contentList2[j] = fruitWords[Math.floor(Math.random()*fruitWords.length)]
+						if (contentList2[j].match(/^[\.,;:'?!]$/)) {
+							null;
+						} else {
+							contentList2[j] = fruitWords[Math.floor(Math.random()*fruitWords.length)]
+						}
 						if (firstP != 0) {
 							contentList2[j] = contentList2[j].charAt(0).toUpperCase() + contentList2[j].slice(1);
 						}
