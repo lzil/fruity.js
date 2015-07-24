@@ -1,13 +1,12 @@
 $(document).ready(function() {
 	var fruitColors = ['#FFCC66', '#66FF33', '#FFFF66', '#FF9999'];
+	var fruitColors2 = ['#990033', '#000066', '#004700', '#47008F'];
 	var fruitWords = ['apple', 'orange', 'kiwi', 'mango', 'grape', 'pineapple', 'watermelon', 'papaya', 'peach', 'cantaloupe', 'banana', 'cherries', 'plum', 'figs', 'pear', 'grapefruit', 'limes', 'lemon', 'lychee', 'blueberries', 'apricot', 'raspberry', 'persimmon', 'strawberry', 'kumquat', 'blackberry', 'tangerine', 'passionfruit', 'avocado'];
 
 	var images = document.getElementsByTagName('img');
 	for (var i = 0; i < images.length; i++) {
 		images[i].style.webkitFilter = "grayscale(.4) sepia(.2) saturate(3) brightness(1.5) contrast(1.2)";
 	};
-
-	
 	var children = document.body.childNodes;
 	var ind = 0;
 	children = Array.prototype.slice.call(children);
@@ -50,20 +49,16 @@ $(document).ready(function() {
 		}
 		ind++;
 	}
-	var allElements = document.getElementsByTagName("div");
-	//console.log(allElements)
+	var allElements = document.getElementsByTagName("*");
 	for (var i = 0; i < allElements.length; i++) {
-		if (allElements[i].style.color != 'ads') {
-			//console.log(allElements[i])
-			//console.log(allElements[i].style.backgroundColor)
-			allElements[i].style.color = fruitColors[Math.floor(Math.random()*fruitColors.length)];
+		allElements[i].style.color = fruitColors[Math.floor(Math.random()*fruitColors.length)];
+		if (getComputedStyle(allElements[i]).backgroundColor != 'rgba(0, 0, 0, 0)') {
+			allElements[i].style.backgroundColor = fruitColors[Math.floor(Math.random()*fruitColors.length)];
 		}
 	}
+
 	var links = document.getElementsByTagName('a');
 	for (var i = 0; i < links.length; i++) {
 		links[i].href = 'https://en.wikipedia.org/wiki/Fruit';
 	};
-
-
-
 })
