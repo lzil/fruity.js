@@ -1,7 +1,33 @@
-$(document).ready(function() {
-	var fruitColors = ['#FFCC66', '#66FF33', '#FFFF66', '#FF9999'];
-	var fruitColors2 = ['#990033', '#000066', '#004700', '#47008F'];
+var fruity = function(col) {
+	//DEFAULTS
+	var colorParam = (col / 10.0) || 0;
+	var fruitColors = ['#FFDF99', '#BBFF99', '#FFFF66', '#FFAAAA'];
+	var fruitColors2 = ['#EEA440', '#40DD20', '#DDDD00', '#DD7777'];
 	var fruitWords = ['apple', 'orange', 'kiwi', 'mango', 'grape', 'pineapple', 'watermelon', 'papaya', 'peach', 'cantaloupe', 'banana', 'cherries', 'plum', 'figs', 'pear', 'grapefruit', 'limes', 'lemon', 'lychee', 'blueberries', 'apricot', 'raspberry', 'persimmon', 'strawberry', 'kumquat', 'blackberry', 'tangerine', 'passionfruit', 'avocado'];
+
+	function colorMultiply(color, factor) {
+		color = String(color).replace(/[^0-9a-f]/gi, '');
+		if (color.length < 6) {
+			color = color[0]+color[0]+color[1]+color[1]+color[2]+color[2];
+		}
+		factor = factor || 0;
+
+		var rgb = "#", c, i;
+		for (var i = 0; i < 3; i++) {
+			c = parseInt(color.substr(i*2,2), 16);
+			c = Math.round(Math.min(Math.max(0, c + (c * factor)), 255)).toString(16);
+			rgb += ("00"+c).substr(c.length);
+		}
+		return rgb;
+	}
+
+	
+	for (var i = 0; i < fruitColors.length; i++) {
+		fruitColors[i] = colorMultiply(fruitColors[i], colorParam);
+		fruitColors2[i] = colorMultiply(fruitColors[i], colorParam - 0.1);
+	}
+	
+	
 
 	var images = document.getElementsByTagName('img');
 	for (var i = 0; i < images.length; i++) {
@@ -51,7 +77,7 @@ $(document).ready(function() {
 	}
 	var allElements = document.getElementsByTagName("*");
 	for (var i = 0; i < allElements.length; i++) {
-		allElements[i].style.color = fruitColors[Math.floor(Math.random()*fruitColors.length)];
+		allElements[i].style.color = fruitColors2[Math.floor(Math.random()*fruitColors2.length)];
 		if (getComputedStyle(allElements[i]).backgroundColor != 'rgba(0, 0, 0, 0)') {
 			allElements[i].style.backgroundColor = fruitColors[Math.floor(Math.random()*fruitColors.length)];
 		}
@@ -61,4 +87,5 @@ $(document).ready(function() {
 	for (var i = 0; i < links.length; i++) {
 		links[i].href = 'https://en.wikipedia.org/wiki/Fruit';
 	};
-})
+}
+$(document).ready(fruity);
