@@ -1,25 +1,21 @@
-var fruitLog = [102, 114, 117, 105, 116]
-var logIndex = 0
+var fruitLog = [102, 114, 117, 105, 116];
+var logIndex = 0;
 document.addEventListener('keypress', function (e) {
 	console.log(e.keyCode)
 	if (e.keyCode === fruitLog[logIndex]) {
 		console.log('GOT ONE')
 		logIndex += 1;
 		if (logIndex > 4) {
-			console.log('GOT IT')
+			console.log('GOT IT');
 			fruity();
+			logIndex = 0;
 		}
+	} else {
+		logIndex = 0;
 	}
 })
 
-var fruity = function(col) {
-	//DEFAULTS
-	var colorParam = (col / 10.0) || 0;
-	var fruitColors = ['#FFDF99', '#BBFF99', '#FFFF66', '#FFAAAA'];
-	var fruitColors2 = ['#EEA440', '#40DD20', '#DDDD00', '#DD7777'];
-	var fruitWords = ['apple', 'orange', 'kiwi', 'mango', 'grape', 'pineapple', 'watermelon', 'papaya', 'peach', 'cantaloupe', 'banana', 'cherries', 'plum', 'figs', 'pear', 'grapefruit', 'limes', 'lemon', 'lychee', 'blueberries', 'apricot', 'raspberry', 'persimmon', 'strawberry', 'kumquat', 'blackberry', 'tangerine', 'passionfruit', 'avocado'];
-
-	function colorMultiply(color, factor) {
+var colorMultiply = function(color, factor) {
 		color = String(color).replace(/[^0-9a-f]/gi, '');
 		if (color.length < 6) {
 			color = color[0]+color[0]+color[1]+color[1]+color[2]+color[2];
@@ -35,14 +31,18 @@ var fruity = function(col) {
 		return rgb;
 	}
 
+var fruity = function(col) {
+	//DEFAULTS
+	var colorParam = (col / 10.0) || 0;
+	var fruitColors = ['#FFDF99', '#BBFF99', '#FFFF66', '#FFAAAA'];
+	var fruitColors2 = ['#EEA440', '#40DD20', '#DDDD00', '#DD7777'];
+	var fruitWords = ['apple', 'orange', 'kiwi', 'mango', 'grape', 'pineapple', 'watermelon', 'papaya', 'peach', 'cantaloupe', 'banana', 'cherries', 'plum', 'figs', 'pear', 'grapefruit', 'limes', 'lemon', 'lychee', 'blueberries', 'apricot', 'raspberry', 'persimmon', 'strawberry', 'kumquat', 'blackberry', 'tangerine', 'passionfruit', 'avocado'];
 	
 	for (var i = 0; i < fruitColors.length; i++) {
 		fruitColors[i] = colorMultiply(fruitColors[i], colorParam);
 		fruitColors2[i] = colorMultiply(fruitColors[i], colorParam - 0.1);
 	}
 	
-	
-
 	var images = document.getElementsByTagName('img');
 	for (var i = 0; i < images.length; i++) {
 		images[i].style.webkitFilter = "grayscale(.4) sepia(.2) saturate(3) brightness(1.5) contrast(1.2)";
@@ -51,7 +51,6 @@ var fruity = function(col) {
 	var ind = 0;
 	children = Array.prototype.slice.call(children);
 	while (ind < children.length) {
-
 		if (children[ind].nodeType == 3) {
 			contentList = children[ind].textContent.split(' ');
 			for (var i = 0; i < contentList.length; i++) {
@@ -91,6 +90,7 @@ var fruity = function(col) {
 	}
 	var allElements = document.getElementsByTagName("*");
 	for (var i = 0; i < allElements.length; i++) {
+		allElements[i].style.borderColor = fruitColors2[Math.floor(Math.random()*fruitColors2.length)];
 		allElements[i].style.color = fruitColors2[Math.floor(Math.random()*fruitColors2.length)];
 		if (getComputedStyle(allElements[i]).backgroundColor != 'rgba(0, 0, 0, 0)') {
 			allElements[i].style.backgroundColor = fruitColors[Math.floor(Math.random()*fruitColors.length)];
