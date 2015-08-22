@@ -1,8 +1,8 @@
 var fruitLog = [102, 114, 117, 105, 116];
 var logIndex = 0;
 document.addEventListener('keypress', function (e) {
-	console.log(e.keyCode)
-	if (e.keyCode === fruitLog[logIndex]) {
+	console.log('d')
+	if (e.charCode === fruitLog[logIndex]) {
 		console.log('GOT ONE')
 		logIndex += 1;
 		if (logIndex > 4) {
