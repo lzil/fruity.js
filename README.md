@@ -1,9 +1,17 @@
 # fruity.js
-Fruitify your site!
+Fruitify your site!  
 
-Proposed features:
--turns one out of 10 words into a fruit-related word (nouns only?)
--turns all images into images of fruit (fully interactive)
--changes color scheme to bright colors (orange, yellow, bright green, bright red)
--plays fruit-related music in the background
--replace hyperlinks with fruit-related ones
+fruity.js is a short Javascript library that I created just for fun!  
+
+To try it out, go to [my website](zhoul.scripts.mit.edu), and type
+	fruit
+You'll be able to see what happens ;)  
+
+Some features of fruity.js include:
+* turns about a third of the words currently on the screen into names of fruits (hardcoded, of course...)
+* renders the images on the page to be more pastel-y and fruity
+* all links now link to [this article](https://en.wikipedia.org/wiki/Fruit)
+* changes background color schemes to bright pastel colors
+
+Future proposed changes:  
+* play soft, fresh music in the background (have no idea what I'll do for this yet)
