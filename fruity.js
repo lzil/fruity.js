@@ -1,3 +1,10 @@
+/*
+  _               
+_|_._   o_|_   o_ 
+ | | |_|| |_\/o_> 
+            / _|  
+*/
+
 var fruitLog = [102, 114, 117, 105, 116];
 var logIndex = 0;
 document.addEventListener('keypress', function (e) {
@@ -15,27 +22,27 @@ document.addEventListener('keypress', function (e) {
 })
 
 var colorMultiply = function(color, factor) {
-		color = String(color).replace(/[^0-9a-f]/gi, '');
-		if (color.length < 6) {
-			color = color[0]+color[0]+color[1]+color[1]+color[2]+color[2];
-		}
-		factor = factor || 0;
-
-		var rgb = "#", c, i;
-		for (var i = 0; i < 3; i++) {
-			c = parseInt(color.substr(i*2,2), 16);
-			c = Math.round(Math.min(Math.max(0, c + (c * factor)), 255)).toString(16);
-			rgb += ("00"+c).substr(c.length);
-		}
-		return rgb;
+	color = String(color).replace(/[^0-9a-f]/gi, '');
+	if (color.length < 6) {
+		color = color[0]+color[0]+color[1]+color[1]+color[2]+color[2];
 	}
+	factor = factor || 0;
+
+	var rgb = "#", c, i;
+	for (var i = 0; i < 3; i++) {
+		c = parseInt(color.substr(i*2,2), 16);
+		c = Math.round(Math.min(Math.max(0, c + (c * factor)), 255)).toString(16);
+		rgb += ("00"+c).substr(c.length);
+	}
+	return rgb;
+}
 
 var fruity = function(col) {
 	//DEFAULTS
 	var colorParam = (col / 10.0) || 0;
-	var fruitColors = ['#FFDF99', '#BBFF99', '#FFFF66', '#FFAAAA'];
-	var fruitColors2 = ['#EEA440', '#40DD20', '#DDDD00', '#DD7777'];
-	var fruitWords = ['apple', 'orange', 'kiwi', 'mango', 'grape', 'pineapple', 'watermelon', 'papaya', 'peach', 'cantaloupe', 'banana', 'cherries', 'plum', 'figs', 'pear', 'grapefruit', 'limes', 'lemon', 'lychee', 'blueberries', 'apricot', 'raspberry', 'persimmon', 'strawberry', 'kumquat', 'blackberry', 'tangerine', 'passionfruit', 'avocado'];
+	var fruitColors = ['#FFDF99', '#BBFF99', '#FFFF66', '#FFAAAA']; //background colors
+	var fruitColors2 = ['#EEA440', '#40DD20', '#DDDD00', '#DD7777']; //text colors
+	var fruitWords = ['apple', 'orange', 'kiwi', 'mango', 'grape', 'pineapple', 'watermelon', 'papaya', 'peach', 'cantaloupe', 'banana', 'cherries', 'plum', 'figs', 'pear', 'grapefruit', 'lime', 'lemon', 'lychee', 'blueberry', 'apricot', 'raspberry', 'persimmon', 'strawberry', 'kumquat', 'blackberry', 'tangerine', 'passionfruit', 'avocado'];
 	
 	for (var i = 0; i < fruitColors.length; i++) {
 		fruitColors[i] = colorMultiply(fruitColors[i], colorParam);
@@ -91,6 +98,7 @@ var fruity = function(col) {
 		}
 		ind++;
 	}
+
 	var allElements = document.getElementsByTagName("*");
 	for (var i = 0; i < allElements.length; i++) {
 		allElements[i].style.borderColor = fruitColors2[Math.floor(Math.random()*fruitColors2.length)];
