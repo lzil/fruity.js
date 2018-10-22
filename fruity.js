@@ -2,7 +2,9 @@
   _               
 _|_._   o_|_   o_ 
  | | |_|| |_\/o_> 
-            / _|  
+			/ _|  
+			
+- github.io/lzil/fruityjs
 */
 
 var fruitLog = [102, 114, 117, 105, 116];
@@ -40,13 +42,13 @@ var colorMultiply = function(color, factor) {
 var fruity = function(col) {
 	//DEFAULTS
 	var colorParam = (col / 10.0) || 0;
-	var fruitColors = ['#FFDF99', '#BBFF99', '#FFFF66', '#FFAAAA']; //background colors
-	var fruitColors2 = ['#EEA440', '#40DD20', '#DDDD00', '#DD7777']; //text colors
+	var fruitColors = ['#FFDFBB', '#CCFFBB', '#FFFF99', '#FFBBBB']; //background colors
+	var fruitColors2 = ['#AA9430', '#40BB20', '#BBBB00', '#BB6666']; //text colors
 	var fruitWords = ['apple', 'orange', 'kiwi', 'mango', 'grape', 'pineapple', 'watermelon', 'papaya', 'peach', 'cantaloupe', 'banana', 'cherries', 'plum', 'figs', 'pear', 'grapefruit', 'lime', 'lemon', 'lychee', 'blueberry', 'apricot', 'raspberry', 'persimmon', 'strawberry', 'kumquat', 'blackberry', 'tangerine', 'passionfruit', 'avocado'];
 	
 	for (var i = 0; i < fruitColors.length; i++) {
 		fruitColors[i] = colorMultiply(fruitColors[i], colorParam);
-		fruitColors2[i] = colorMultiply(fruitColors[i], colorParam - 0.1);
+		//fruitColors2[i] = colorMultiply(fruitColors[i], colorParam - 0.1);
 	}
 	
 	var images = document.getElementsByTagName('img');
@@ -110,6 +112,8 @@ var fruity = function(col) {
 
 	var links = document.getElementsByTagName('a');
 	for (var i = 0; i < links.length; i++) {
-		links[i].href = 'https://en.wikipedia.org/wiki/Fruit';
+		if (Math.floor((Math.random() * 5) + 1) < 3) {
+			links[i].href = 'https://en.wikipedia.org/wiki/Fruit';
+		}
 	};
 }
